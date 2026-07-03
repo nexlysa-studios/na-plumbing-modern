@@ -77,14 +77,33 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "NA Plumbing Services — Modern Plumbers in Cape Town" },
+      {
+        name: "description",
+        content:
+          "Fast, reliable and honest plumbing in Cape Town. Emergency call-outs, leak detection, blocked drains, burst pipes, geyser repairs and installations for homes and businesses.",
+      },
+      {
+        name: "keywords",
+        content:
+          "Plumber Cape Town, Emergency Plumber Cape Town, Leak Detection, Blocked Drains, Burst Pipes, Bathroom Plumbing, Kitchen Plumbing, Affordable Plumber, Geyser Repairs",
+      },
+      { name: "author", content: "NA Plumbing Services" },
+      { property: "og:title", content: "NA Plumbing Services — Modern Plumbers in Cape Town" },
+      {
+        property: "og:description",
+        content:
+          "Fast, reliable and honest plumbing in Cape Town. 24/7 emergency call-outs and same-day service.",
+      },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "NA Plumbing Services" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "NA Plumbing Services — Modern Plumbers in Cape Town" },
+      {
+        name: "twitter:description",
+        content: "Fast, reliable and honest plumbing in Cape Town.",
+      },
+      { name: "theme-color", content: "#ffffff" },
     ],
     links: [
       {
@@ -92,6 +111,35 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: appCss,
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800;900&display=swap",
+      },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Plumber",
+          name: "NA Plumbing Services",
+          image: "/favicon.ico",
+          telephone: "+27 82 927 7339",
+          email: "info@naplumbing.co.za",
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: "Cape Town",
+            addressCountry: "ZA",
+          },
+          areaServed: "Cape Town",
+          priceRange: "$$",
+          openingHours: "Mo-Su 00:00-23:59",
+          description:
+            "Modern plumbing services in Cape Town. Emergency call-outs, leak detection, blocked drains, burst pipes, geyser repairs and installations.",
+        }),
+      },
     ],
   }),
   shellComponent: RootShell,
