@@ -26,6 +26,7 @@ import { MagneticButton } from "./MagneticButton";
 import { whatsappUrl, PHONE_DISPLAY, PHONE_TEL, EMAIL } from "./whatsapp";
 import heroImg from "@/assets/hero-plumbing.jpg";
 import aboutImg from "@/assets/about-plumbing.jpg";
+import logoAsset from "@/assets/logo.asset.json";
 
 /* ---------------- Hero ---------------- */
 export function Hero() {
@@ -665,18 +666,13 @@ export function QuoteForm() {
               />
             </div>
             <div className="mt-6 sm:col-span-2">
-              <MagneticButton
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  onSubmit(e as unknown as React.FormEvent);
-                }}
-                variant="primary"
-                className="w-full sm:w-auto"
+              <button
+                type="submit"
+                className="group inline-flex w-full items-center justify-center gap-2 rounded-full border border-black bg-black px-7 py-4 text-[15px] font-medium text-white transition-colors hover:bg-black/90 sm:w-auto"
               >
                 Request my quote
-                <ArrowUpRight className="h-4 w-4" />
-              </MagneticButton>
+                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </button>
             </div>
           </form>
         </Reveal>
@@ -916,8 +912,6 @@ function ContactRow({
 }
 
 /* ---------------- Footer ---------------- */
-import logoAsset from "@/assets/logo.asset.json";
-
 export function Footer() {
   return (
     <footer className="border-t border-hairline bg-white">
