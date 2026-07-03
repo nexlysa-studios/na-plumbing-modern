@@ -1,8 +1,8 @@
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { useRef, type ComponentPropsWithoutRef, type ReactNode } from "react";
+import { motion, useMotionValue, useSpring, useTransform, type HTMLMotionProps } from "framer-motion";
+import { useRef, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
-type Props = ComponentPropsWithoutRef<"a"> & {
+type Props = Omit<HTMLMotionProps<"a">, "ref" | "style"> & {
   children: ReactNode;
   variant?: "primary" | "secondary" | "ghost";
   strength?: number;
