@@ -5,6 +5,7 @@ import {
   Hero,
   Trust,
   Services,
+  RecentWork,
   WhyChooseUs,
   Process,
   EmergencyCTA,
@@ -28,6 +29,7 @@ function Index() {
         <Hero />
         <Trust />
         <Services />
+        <RecentWork />
         <WhyChooseUs />
         <Process />
         <EmergencyCTA />

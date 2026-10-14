@@ -26,7 +26,23 @@ import { MagneticButton } from "./MagneticButton";
 import { whatsappUrl, PHONE_DISPLAY, PHONE_TEL, EMAIL } from "./whatsapp";
 import heroImg from "@/assets/hero-plumbing.jpg";
 import aboutImg from "@/assets/about-plumbing.jpg";
-import logoAsset from "@/assets/logo.asset.json";
+import logoPng from "@/assets/Logo.png";
+import work1 from "@/assets/NaPlumbing-work (1).JPG";
+import work2 from "@/assets/NaPlumbing-work (2).JPG";
+import work3 from "@/assets/NaPlumbing-work (3).JPG";
+import work4 from "@/assets/NaPlumbing-work (4).JPG";
+import work5 from "@/assets/NaPlumbing-work (5).JPG";
+import work6 from "@/assets/NaPlumbing-work (6).JPG";
+import work7 from "@/assets/NaPlumbing-work (7).JPG";
+import work8 from "@/assets/NaPlumbing-work (8).JPG";
+import work9 from "@/assets/NaPlumbing-work (9).JPG";
+import work10 from "@/assets/NaPlumbing-work (10).JPG";
+import work11 from "@/assets/NaPlumbing-work (11).JPG";
+import work12 from "@/assets/NaPlumbing-work (12).JPG";
+import work13 from "@/assets/NaPlumbing-work (13).JPG";
+import work14 from "@/assets/NaPlumbing-work (14).JPG";
+import work15 from "@/assets/NaPlumbing-work (15).JPG";
+import work16 from "@/assets/NaPlumbing-work (16).JPG";
 
 /* ---------------- Hero ---------------- */
 export function Hero() {
@@ -265,6 +281,75 @@ export function Services() {
           </motion.a>
         ))}
       </Stagger>
+    </section>
+  );
+}
+
+const projectImages = [
+  work1,
+  work2,
+  work3,
+  work4,
+  work5,
+  work6,
+  work7,
+  work8,
+  work9,
+  work10,
+  work11,
+  work12,
+  work13,
+  work14,
+  work15,
+  work16,
+];
+
+export function RecentWork() {
+  return (
+    <section id="gallery" className="border-y border-hairline bg-secondary/50">
+      <div className="mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
+        <div className="mb-14 max-w-3xl">
+          <Reveal>
+            <div className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
+              Recent work
+            </div>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <h2 className="text-balance text-4xl font-semibold leading-[1.05] tracking-[-0.03em] sm:text-5xl lg:text-6xl">
+              A look at the projects we take pride in.
+            </h2>
+          </Reveal>
+        </div>
+
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          {projectImages.map((src, index) => (
+            <motion.div
+              key={`${src}-${index}`}
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{ duration: 0.45, delay: index * 0.04 }}
+              whileHover={{ y: -6 }}
+              className={`group relative overflow-hidden rounded-[1.75rem] border border-hairline bg-white ${
+                index === 0 || index === 2 ? "xl:col-span-2" : ""
+              }`}
+            >
+              <img
+                src={src}
+                alt={`NA Plumbing project ${index + 1}`}
+                loading="lazy"
+                className="h-72 w-full object-cover transition duration-700 group-hover:scale-105 sm:h-80 xl:h-96"
+              />
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent p-5 text-white">
+                <div className="text-xs uppercase tracking-[0.2em] text-white/80">
+                  Project {index + 1}
+                </div>
+                <div className="mt-2 text-lg font-medium">Professional plumbing solutions</div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
     </section>
   );
 }
@@ -919,11 +1004,11 @@ export function Footer() {
         <div className="flex flex-col items-start justify-between gap-10 sm:flex-row sm:items-center">
           <a href="#home" className="flex items-center gap-2">
             <img
-              src={logoAsset.url}
+              src={logoPng}
               alt="NA Plumbing Services"
-              width={140}
-              height={40}
-              className="h-9 w-auto object-contain"
+              width={520}
+              height={150}
+              className="h-28 w-auto object-contain sm:h-32 lg:h-36"
             />
           </a>
           <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground">

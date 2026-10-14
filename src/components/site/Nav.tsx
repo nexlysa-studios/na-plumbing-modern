@@ -1,7 +1,7 @@
 import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
-import logoAsset from "@/assets/logo.asset.json";
+import logoPng from "@/assets/Logo.png";
 import { MagneticButton } from "./MagneticButton";
 import { whatsappUrl } from "./whatsapp";
 
@@ -29,11 +29,11 @@ export function Nav() {
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:h-20 sm:px-8">
           <a href="#home" className="flex items-center gap-2" aria-label="NA Plumbing home">
             <img
-              src={logoAsset.url}
+              src={logoPng}
               alt="NA Plumbing Services"
-              width={140}
-              height={40}
-              className="h-8 w-auto object-contain sm:h-10"
+              width={520}
+              height={150}
+              className="h-28 w-auto object-contain sm:h-32 lg:h-36"
             />
           </a>
 
