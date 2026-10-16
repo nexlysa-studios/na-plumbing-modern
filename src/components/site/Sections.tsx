@@ -25,6 +25,7 @@ import { Counter } from "./Counter";
 import { MagneticButton } from "./MagneticButton";
 import { whatsappUrl, PHONE_DISPLAY, PHONE_TEL, EMAIL } from "./whatsapp";
 import heroImg from "@/assets/hero-plumbing.jpg";
+import heroVideo from "@/assets/Na-plumbing-video.mp4";
 import aboutImg from "@/assets/about-plumbing.jpg";
 import logoPng from "@/assets/Logo.png";
 import work1 from "@/assets/NaPlumbing-work (1).JPG";
@@ -49,36 +50,47 @@ export function Hero() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], [0, 120]);
-  const yImg = useTransform(scrollYProgress, [0, 1], [0, -80]);
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   return (
     <section
       id="home"
       ref={ref}
-      className="relative overflow-hidden pt-28 sm:pt-36 lg:pt-40"
+      className="relative isolate min-h-screen overflow-hidden pt-28 sm:pt-36 lg:pt-40"
     >
-      <FloatingShapes />
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-5 pb-20 sm:px-8 lg:grid-cols-12 lg:gap-8 lg:pb-32">
-        <motion.div style={{ y, opacity }} className="lg:col-span-7">
+      <video
+        aria-hidden="true"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        poster={heroImg}
+        className="absolute inset-0 h-full w-full object-cover"
+      >
+        <source src={heroVideo} type="video/mp4" />
+      </video>
+      <div aria-hidden="true" className="absolute inset-0 bg-black/55" />
+      <div className="relative mx-auto flex min-h-[calc(100vh-7rem)] max-w-7xl items-center px-5 pb-20 pt-10 sm:min-h-[calc(100vh-9rem)] sm:px-8 lg:pb-32 lg:pt-12">
+        <motion.div style={{ y, opacity }} className="max-w-4xl">
           <Reveal>
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-hairline bg-white/60 px-3 py-1.5 text-xs font-medium text-muted-foreground backdrop-blur">
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/30 bg-black/25 px-3 py-1.5 text-xs font-medium text-white backdrop-blur">
               <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-black/60 opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-black" />
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white/60 opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-white" />
               </span>
               Available 24/7 across Cape Town
             </div>
           </Reveal>
 
-          <h1 className="text-balance text-[2.75rem] font-semibold leading-[1.02] tracking-[-0.035em] sm:text-6xl lg:text-[5.25rem]">
+          <h1 className="text-balance text-[2.75rem] font-semibold leading-[1.02] tracking-[-0.035em] text-white sm:text-6xl lg:text-[5.25rem]">
             <TextReveal text="Cape Town's" />
             <TextReveal text="modern plumbing" delay={0.1} />
             <TextReveal text="experts." delay={0.2} />
           </h1>
 
           <Reveal delay={0.4}>
-            <p className="mt-8 max-w-xl text-pretty text-lg text-muted-foreground sm:text-xl">
+            <p className="mt-8 max-w-xl text-pretty text-lg text-white/80 sm:text-xl">
               Fast. Reliable. Honest plumbing for homes and businesses — from
               emergency call-outs to full installations.
             </p>
@@ -86,7 +98,11 @@ export function Hero() {
 
           <Reveal delay={0.55}>
             <div className="mt-10 flex flex-wrap items-center gap-3">
-              <MagneticButton href="#quote" variant="primary">
+              <MagneticButton
+                href="#quote"
+                variant="primary"
+                className="border-white bg-white text-black hover:bg-white/90"
+              >
                 Get a free quote
                 <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </MagneticButton>
@@ -95,6 +111,7 @@ export function Hero() {
                 target="_blank"
                 rel="noopener noreferrer"
                 variant="secondary"
+                className="border-white/40 bg-white/10 text-white hover:bg-white/20"
               >
                 <MessageCircle className="h-4 w-4" />
                 Chat on WhatsApp
@@ -103,7 +120,7 @@ export function Hero() {
           </Reveal>
 
           <Reveal delay={0.7}>
-            <div className="mt-14 flex flex-wrap items-center gap-x-8 gap-y-3 text-sm text-muted-foreground">
+            <div className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-3 text-sm text-white/85">
               <span className="inline-flex items-center gap-2">
                 <Check className="h-4 w-4" /> Licensed professionals
               </span>
@@ -116,45 +133,6 @@ export function Hero() {
             </div>
           </Reveal>
         </motion.div>
-
-        <motion.div
-          style={{ y: yImg }}
-          className="relative lg:col-span-5"
-          initial={{ opacity: 0, scale: 0.96 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <motion.div
-            animate={{ y: [0, -14, 0] }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            className="relative aspect-square overflow-hidden rounded-[2rem] border border-hairline bg-secondary"
-          >
-            <img
-              src={heroImg}
-              alt="Premium chrome plumbing fixtures"
-              width={1280}
-              height={1280}
-              className="h-full w-full object-cover"
-            />
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.9, duration: 0.6 }}
-            className="absolute -bottom-6 -left-6 hidden rounded-2xl border border-hairline bg-white px-4 py-3 shadow-[0_20px_60px_-20px_rgba(0,0,0,0.25)] sm:block"
-          >
-            <div className="flex items-center gap-3">
-              <div className="grid h-10 w-10 place-items-center rounded-full bg-black text-white">
-                <ShieldCheck className="h-5 w-5" />
-              </div>
-              <div className="text-sm">
-                <div className="font-semibold leading-tight">Fully licensed</div>
-                <div className="text-muted-foreground">Guaranteed workmanship</div>
-              </div>
-            </div>
-          </motion.div>
-        </motion.div>
       </div>
     </section>
   );
@@ -162,7 +140,7 @@ export function Hero() {
 
 function TextReveal({ text, delay = 0 }: { text: string; delay?: number }) {
   return (
-    <span className="block overflow-hidden">
+    <span className="block overflow-hidden pb-[0.15em] -mb-[0.15em]">
       <motion.span
         initial={{ y: "110%" }}
         animate={{ y: 0 }}
@@ -172,23 +150,6 @@ function TextReveal({ text, delay = 0 }: { text: string; delay?: number }) {
         {text}
       </motion.span>
     </span>
-  );
-}
-
-function FloatingShapes() {
-  return (
-    <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-      <motion.div
-        animate={{ y: [0, 30, 0], x: [0, 10, 0] }}
-        transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute -top-32 -right-24 h-[420px] w-[420px] rounded-full bg-black/[0.03] blur-3xl"
-      />
-      <motion.div
-        animate={{ y: [0, -20, 0], x: [0, -15, 0] }}
-        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-1/2 -left-40 h-[500px] w-[500px] rounded-full bg-black/[0.025] blur-3xl"
-      />
-    </div>
   );
 }
 
