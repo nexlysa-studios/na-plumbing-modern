@@ -63,6 +63,8 @@ export function Nav() {
 
           <button
             aria-label="Toggle menu"
+            aria-expanded={open}
+            aria-controls="mobile-navigation"
             onClick={() => setOpen((v) => !v)}
             className="grid h-10 w-10 place-items-center rounded-full border border-hairline md:hidden"
           >
@@ -73,11 +75,12 @@ export function Nav() {
         <AnimatePresence>
           {open && (
             <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-              className="overflow-hidden border-t border-hairline bg-white/90 backdrop-blur-xl md:hidden"
+              id="mobile-navigation"
+              initial={{ height: 0, opacity: 0, y: -8 }}
+              animate={{ height: "auto", opacity: 1, y: 0 }}
+              exit={{ height: 0, opacity: 0, y: -8 }}
+              transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+              className="overflow-hidden border-t border-hairline bg-white md:hidden"
             >
               <div className="flex flex-col gap-1 px-5 py-4">
                 {links.map((l) => (

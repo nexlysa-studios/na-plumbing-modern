@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   ArrowUpRight,
   Phone,
@@ -48,9 +48,49 @@ import work16 from "@/assets/NaPlumbing-work (16).JPG";
 /* ---------------- Hero ---------------- */
 export function Hero() {
   const ref = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], [0, 120]);
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    let warnedAutoplayBlocked = false;
+    const keepVideoPlaying = () => {
+      if (document.visibilityState !== "visible" || !video.paused) return;
+
+      video.play().catch((error: unknown) => {
+        if (error instanceof DOMException && error.name === "NotAllowedError") {
+          if (!warnedAutoplayBlocked) {
+            console.warn("Hero video autoplay was blocked by the browser.");
+            warnedAutoplayBlocked = true;
+          }
+          return;
+        }
+        console.error("Unable to play the hero video.", error);
+      });
+    };
+
+    video.muted = true;
+    keepVideoPlaying();
+    video.addEventListener("pause", keepVideoPlaying);
+    video.addEventListener("ended", keepVideoPlaying);
+    video.addEventListener("canplay", keepVideoPlaying);
+    document.addEventListener("visibilitychange", keepVideoPlaying);
+    window.addEventListener("pageshow", keepVideoPlaying);
+    window.addEventListener("pointerdown", keepVideoPlaying);
+
+    return () => {
+      video.removeEventListener("pause", keepVideoPlaying);
+      video.removeEventListener("ended", keepVideoPlaying);
+      video.removeEventListener("canplay", keepVideoPlaying);
+      document.removeEventListener("visibilitychange", keepVideoPlaying);
+      window.removeEventListener("pageshow", keepVideoPlaying);
+      window.removeEventListener("pointerdown", keepVideoPlaying);
+    };
+  }, []);
 
   return (
     <section
@@ -59,6 +99,7 @@ export function Hero() {
       className="relative isolate min-h-screen overflow-hidden pt-28 sm:pt-36 lg:pt-40"
     >
       <video
+        ref={videoRef}
         aria-hidden="true"
         autoPlay
         muted
@@ -855,7 +896,7 @@ export function Contact() {
     <section id="contact" className="border-t border-hairline bg-black text-white">
       <div className="mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
         <div className="grid grid-cols-1 gap-16 lg:grid-cols-12">
-          <div className="lg:col-span-6">
+          <div className="lg:col-span-12">
             <Reveal>
               <div className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-white/60">
                 Contact
@@ -901,19 +942,6 @@ export function Contact() {
             </Reveal>
           </div>
 
-          <Reveal delay={0.2} className="lg:col-span-6">
-            <div className="overflow-hidden rounded-3xl border border-white/10 bg-white/5">
-              <iframe
-                title="Cape Town map"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d211895.66!2d18.42!3d-33.9249!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sCape%20Town!5e0!3m2!1sen!2sza!4v1700000000000"
-                width="100%"
-                height="520"
-                loading="lazy"
-                style={{ border: 0, filter: "grayscale(1) invert(0.92) contrast(0.9)" }}
-                referrerPolicy="no-referrer-when-downgrade"
-              />
-            </div>
-          </Reveal>
         </div>
       </div>
     </section>
