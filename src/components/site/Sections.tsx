@@ -44,6 +44,9 @@ import work13 from "@/assets/NaPlumbing-work (13).JPG";
 import work14 from "@/assets/NaPlumbing-work (14).JPG";
 import work15 from "@/assets/NaPlumbing-work (15).JPG";
 import work16 from "@/assets/NaPlumbing-work (16).JPG";
+import team1 from "@/assets/Team1.JPG";
+import team2 from "@/assets/Team2.JPG";
+import googleIcon from "@/assets/google.svg";
 
 /* ---------------- Hero ---------------- */
 export function Hero() {
@@ -287,23 +290,103 @@ export function Services() {
   );
 }
 
-const projectImages = [
-  work1,
-  work2,
-  work3,
-  work4,
-  work5,
-  work6,
-  work7,
-  work8,
-  work9,
-  work10,
-  work11,
-  work12,
-  work13,
-  work14,
-  work15,
-  work16,
+const projects = [
+  {
+    src: work1,
+    title: "Solar water heating",
+    description: "Roof-mounted solar hot water system",
+    layout: "col-span-2 row-span-2",
+  },
+  {
+    src: work2,
+    title: "Concealed pipework",
+    description: "In-floor plumbing rough-in",
+    layout: "row-span-2",
+  },
+  {
+    src: work3,
+    title: "Walk-in shower renovation",
+    description: "Teal feature tile and frameless glass",
+    layout: "row-span-2",
+  },
+  {
+    src: work4,
+    title: "Water filtration system",
+    description: "Under-sink drinking water filtration",
+    layout: "",
+  },
+  {
+    src: work5,
+    title: "Wall-hung toilet installation",
+    description: "Modern bathroom plumbing fit-out",
+    layout: "",
+  },
+  {
+    src: work6,
+    title: "Walk-in shower and toilet",
+    description: "Stone-tiled bathroom with black fixtures",
+    layout: "col-span-2 row-span-2",
+  },
+  {
+    src: work7,
+    title: "Hot water cylinder",
+    description: "Attic-mounted geyser installation",
+    layout: "",
+  },
+  {
+    src: work8,
+    title: "Kitchen plumbing fit-out",
+    description: "Sink and cabinetry installation in progress",
+    layout: "col-span-2",
+  },
+  {
+    src: work9,
+    title: "Brass kitchen mixer",
+    description: "Pull-down tap installation",
+    layout: "row-span-2",
+  },
+  {
+    src: work10,
+    title: "Kitchen sink installation",
+    description: "Undermount sink with black cabinetry",
+    layout: "",
+  },
+  {
+    src: work11,
+    title: "Kitchen renovation",
+    description: "Island sink and integrated plumbing",
+    layout: "col-span-2",
+  },
+  {
+    src: work12,
+    title: "Underground water line repair",
+    description: "Excavated pipe replacement",
+    layout: "row-span-2",
+  },
+  {
+    src: work13,
+    title: "Bath and toilet installation",
+    description: "Finished grey-tiled bathroom fit-out",
+    layout: "col-span-2",
+  },
+  {
+    src: work14,
+    title: "Modern bathroom plumbing",
+    description: "Bath, toilet and black fixtures",
+    layout: "col-span-2",
+  },
+  {
+    src: work15,
+    title: "Vanity basin installation",
+    description: "Vessel basin with brass tapware",
+    layout: "row-span-2",
+  },
+  {
+    src: work16,
+    title: "Solar hot water installation",
+    description: "Rooftop solar panels and heat pump",
+    layout: "col-span-2 row-span-2",
+  },
 ];
 
 export function RecentWork() {
@@ -323,33 +406,80 @@ export function RecentWork() {
           </Reveal>
         </div>
 
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
-          {projectImages.map((src, index) => (
+        <div className="grid grid-flow-dense auto-rows-[145px] grid-cols-2 gap-3 sm:auto-rows-[170px] sm:grid-cols-4 sm:gap-4 xl:auto-rows-[190px]">
+          {projects.map(({ src, title, description, layout }, index) => (
             <motion.div
-              key={`${src}-${index}`}
+              key={src}
               initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.25 }}
               transition={{ duration: 0.45, delay: index * 0.04 }}
               whileHover={{ y: -6 }}
-              className={`group relative overflow-hidden rounded-[1.75rem] border border-hairline bg-white ${
-                index === 0 || index === 2 ? "xl:col-span-2" : ""
-              }`}
+              className={`group relative overflow-hidden rounded-[1.75rem] border border-hairline bg-white ${layout}`}
             >
               <img
                 src={src}
-                alt={`NA Plumbing project ${index + 1}`}
+                alt={`${title}: ${description}`}
                 loading="lazy"
-                className="h-72 w-full object-cover transition duration-700 group-hover:scale-105 sm:h-80 xl:h-96"
+                className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent p-5 text-white">
-                <div className="text-xs uppercase tracking-[0.2em] text-white/80">
-                  Project {index + 1}
-                </div>
-                <div className="mt-2 text-lg font-medium">Professional plumbing solutions</div>
+                <div className="text-lg font-medium">{title}</div>
+                <div className="mt-1 text-sm text-white/80">{description}</div>
               </div>
             </motion.div>
           ))}
+        </div>
+
+        <div className="mt-20 grid gap-8 border-t border-hairline pt-12 sm:mt-24 sm:gap-10 lg:grid-cols-12 lg:items-center">
+          <div className="lg:col-span-4">
+            <Reveal>
+              <div className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
+                The team
+              </div>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <h3 className="text-balance text-3xl font-semibold leading-[1.05] tracking-[-0.03em] sm:text-4xl">
+                The people behind the work.
+              </h3>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <p className="mt-4 max-w-md text-base text-muted-foreground sm:text-lg">
+                On site, hands-on, and proud to keep Cape Town homes running
+                smoothly.
+              </p>
+            </Reveal>
+          </div>
+          <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:col-span-8">
+            <motion.div
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{ duration: 0.45 }}
+              className="h-48 overflow-hidden rounded-[1.75rem] border border-hairline bg-white sm:h-64 lg:h-72"
+            >
+              <img
+                src={team1}
+                alt="NA Plumbing team member arriving at a home for a job"
+                loading="lazy"
+                className="block h-full w-full object-cover"
+              />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{ duration: 0.45, delay: 0.1 }}
+              className="mt-6 h-48 overflow-hidden rounded-[1.75rem] border border-hairline bg-white sm:mt-10 sm:h-64 lg:h-72"
+            >
+              <img
+                src={team2}
+                alt="NA Plumbing team member at work on a rooftop"
+                loading="lazy"
+                className="block h-full w-full object-cover"
+              />
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>
@@ -518,10 +648,13 @@ export function Testimonials() {
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="mx-auto flex justify-center gap-1">
-              {Array.from({ length: 5 }).map((_, k) => (
-                <Star key={k} className="h-4 w-4 fill-black text-black" />
-              ))}
+            <div className="mx-auto flex items-center justify-center gap-2">
+              <img src={googleIcon} alt="Google" className="h-5 w-5" />
+              <div className="flex gap-1">
+                {Array.from({ length: 5 }).map((_, k) => (
+                  <Star key={k} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                ))}
+              </div>
             </div>
             <blockquote className="mx-auto mt-8 max-w-3xl text-balance text-3xl font-medium leading-[1.15] tracking-[-0.02em] sm:text-4xl lg:text-5xl">
               <span className="text-muted-foreground/40">“</span>
@@ -1013,6 +1146,9 @@ export function Footer() {
         <div className="mt-10 flex flex-col items-start justify-between gap-3 border-t border-hairline pt-8 text-xs text-muted-foreground sm:flex-row sm:items-center">
           <div>© {new Date().getFullYear()} NA Plumbing Services. All rights reserved.</div>
           <div>Cape Town, South Africa</div>
+          <a href="https://nexlysa.co.za" target="_blank" rel="noopener noreferrer" className="hover:text-foreground">
+            Built by Nexlysa
+          </a>
         </div>
       </div>
     </footer>
