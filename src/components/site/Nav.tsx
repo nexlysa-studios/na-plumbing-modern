@@ -6,11 +6,11 @@ import { MagneticButton } from "./MagneticButton";
 import { whatsappUrl } from "./whatsapp";
 
 const links = [
-  { href: "#home", label: "Home" },
-  { href: "#services", label: "Services" },
-  { href: "#about", label: "About" },
-  { href: "#quote", label: "Get Quote" },
-  { href: "#contact", label: "Contact" },
+  { href: "/", label: "Home" },
+  { href: "/services", label: "Services" },
+  { href: "/about", label: "About" },
+  { href: "/quote", label: "Get Quote" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export function Nav() {
@@ -27,7 +27,7 @@ export function Nav() {
         className="fixed inset-x-0 top-0 z-50 border-b transition-colors"
       >
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:h-20 sm:px-8">
-          <a href="#home" className="flex items-center gap-2" aria-label="NA Plumbing home">
+          <a href="/" className="flex items-center gap-2" aria-label="NA Plumbing home">
             <img
               src={logoPng}
               alt="NA Plumbing Services"

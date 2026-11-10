@@ -143,7 +143,7 @@ export function Hero() {
           <Reveal delay={0.55}>
             <div className="mt-10 flex flex-wrap items-center gap-3">
               <MagneticButton
-                href="#quote"
+                href="/quote"
                 variant="primary"
                 className="border-white bg-white text-black hover:bg-white/90"
               >
@@ -255,7 +255,7 @@ export function Services() {
           </Reveal>
         </div>
         <Reveal delay={0.2}>
-          <MagneticButton href="#quote" variant="secondary">
+          <MagneticButton href="/quote" variant="secondary">
             Request a service
             <ArrowUpRight className="h-4 w-4" />
           </MagneticButton>
@@ -266,7 +266,7 @@ export function Services() {
         {services.map((s) => (
           <motion.a
             key={s.title}
-            href="#quote"
+            href="/quote"
             variants={staggerItem}
             whileHover={{ y: -6 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
@@ -1065,7 +1065,7 @@ export function Contact() {
                   WhatsApp now
                 </a>
                 <a
-                  href="#quote"
+                  href="/quote"
                   className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3.5 text-sm font-medium transition-colors hover:bg-white/10"
                 >
                   Get a quote
@@ -1124,7 +1124,7 @@ export function Footer() {
     <footer className="border-t border-hairline bg-white">
       <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8">
         <div className="flex flex-col items-start justify-between gap-10 sm:flex-row sm:items-center">
-          <a href="#home" className="flex items-center gap-2">
+          <a href="/" className="flex items-center gap-2">
             <img
               src={logoPng}
               alt="NA Plumbing Services"
@@ -1134,10 +1134,12 @@ export function Footer() {
             />
           </a>
           <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground">
-            <a href="#services" className="hover:text-foreground">Services</a>
-            <a href="#about" className="hover:text-foreground">About</a>
-            <a href="#quote" className="hover:text-foreground">Get quote</a>
-            <a href="#contact" className="hover:text-foreground">Contact</a>
+            <a href="/services" className="hover:text-foreground">Services</a>
+            <a href="/work" className="hover:text-foreground">Recent work</a>
+            <a href="/about" className="hover:text-foreground">About</a>
+            <a href="/faq" className="hover:text-foreground">FAQs</a>
+            <a href="/quote" className="hover:text-foreground">Get quote</a>
+            <a href="/contact" className="hover:text-foreground">Contact</a>
             <a href={whatsappUrl()} target="_blank" rel="noopener noreferrer" className="hover:text-foreground">WhatsApp</a>
             <a href={`mailto:${EMAIL}`} className="hover:text-foreground">Email</a>
             <a href={`tel:${PHONE_TEL}`} className="hover:text-foreground">Phone</a>
